@@ -1,0 +1,24 @@
+package New_Lab;
+import java.util.StringTokenizer;
+public class OddEvenCount {
+	public static void main(String[]args)
+	{
+		int OddEven,oddCount=0,evenCount=0;
+		StringTokenizer input=new StringTokenizer("2 10 5 8 3 1 ");
+		while(input.hasMoreTokens())
+		{
+			OddEven=Integer.parseInt(input.nextToken());
+			if(OddEven%2==0)
+			{
+				evenCount++;
+			}
+			else
+			{
+				oddCount++;
+			}
+		}
+		System.out.println("No.of even integers: "+evenCount);
+		System.out.println("No.of odd integers: "+oddCount);
+	}
+
+}
