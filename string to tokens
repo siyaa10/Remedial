@@ -1,0 +1,21 @@
+package New_Lab;
+import java.util.StringTokenizer;
+public class StringTokenizerDemo {
+	public static void main(String[]args)
+	{
+		int NoOfCount;
+		StringTokenizer input=new StringTokenizer("THIS IS A TEST STRING");
+		NoOfCount=input.countTokens();
+		System.out.println("Number of terms: "+NoOfCount);
+		System.out.println("Next token: ");
+		System.out.println(input.nextToken());
+		System.out.println("Next token: ");
+		System.out.println(input.nextToken());
+		while(input.hasMoreTokens())
+		{
+			System.out.println("Next token: ");
+			System.out.println(input.nextToken());
+		}
+	}
+
+}
