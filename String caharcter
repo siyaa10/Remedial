@@ -1,0 +1,14 @@
+package javalab;
+
+public class StringCharacter {
+	public static void main(String[]args)
+	{
+		String s1="My name is Riya";
+		System.out.println("The given string is : "+s1);
+		char ind1=s1.charAt(0);
+		char ind2=s1.charAt(11);
+		System.out.println("The character at position 0 is : "+ind1);
+		System.out.println("The character at position 11 is : "+ind2);
+	}
+
+}
