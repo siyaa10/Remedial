@@ -1,0 +1,27 @@
+package javalab;
+
+public class CompareStrings {
+	public static void main(String[]args)
+	{
+		int result;
+		String s1="My name is Riya";
+		String s2="My name is Siya";
+		System.out.println("First String : "+s1);
+		System.out.println("Second string : "+s2);
+		result=s1.compareTo(s2);
+		if(result<0)
+		{
+			System.out.println("first string is less than second string");
+		}
+		else if(result==0)
+		{
+			System.out.println("first string is equal to second string");
+		}
+		else
+		{
+			System.out.println("first string is greater than second string");
+		}
+		
+	}
+
+}
