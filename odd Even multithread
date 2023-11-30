@@ -1,0 +1,123 @@
+package javaprojectt;
+import java.util.Random;
+public class MultithreadDemo {
+	public static void main(String[]args)
+	{
+		NumberManager num1=new NumberManager();
+		numberGenerator num2=new numberGenerator(num1);
+		EvenprinterThread print=new  EvenprinterThread(num1);
+		OddprinterThread print2=new OddprinterThread(num1);
+		num2.start();
+		print.start();
+		print2.start();
+	}
+
+}
+class NumberManager
+{
+	private int generatedNumber;
+	private boolean numberGenerated=false;
+	public synchronized void generateNumber()
+	{
+	  generatedNumber=new Random().nextInt(99)+2;
+	  System.out.println("Generated random number : "+generatedNumber);
+	  numberGenerated=true;
+	  notifyAll();
+	  
+	}
+	public synchronized void printEvenNumbers() throws InterruptedException
+	{
+		while(!numberGenerated || generatedNumber%2!=0)
+		{
+			wait();
+		}
+		for(int i=2;i<generatedNumber;i+=2)
+		{
+		 System.out.print(i+" ");	
+		}
+		System.out.println();
+		System.out.println();
+		numberGenerated=false;
+	}
+public synchronized void printOddNumbers() throws InterruptedException
+	{
+		while(!numberGenerated || generatedNumber%2==0)
+		{
+			wait();
+		}
+		for(int i=1;i<=generatedNumber;i+=2)
+		{
+		 System.out.print(i+" ");	
+		}
+		System.out.println();
+		numberGenerated=false;
+   }
+ }
+class numberGenerator extends Thread
+{
+	NumberManager num;
+	public numberGenerator(NumberManager num)
+	{
+		this.num=num;
+	}
+	public void run()
+	{
+		while(true)
+		{
+			num.generateNumber();
+			try
+			{
+				Thread.sleep(1000);
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	
+	}
+}
+class EvenprinterThread extends Thread
+{
+	NumberManager num;
+	public  EvenprinterThread(NumberManager num)
+	{
+	 this.num=num;
+	}
+	public void run()
+	{
+		while(true)
+		{
+			try
+			{
+				num.printEvenNumbers();
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+}
+class OddprinterThread extends Thread
+{
+	NumberManager num;
+	public  OddprinterThread(NumberManager num)
+	{
+	 this.num=num;
+	}
+	public void run()
+	{
+		while(true)
+		{
+			try
+			{
+				num.printOddNumbers();
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+}
