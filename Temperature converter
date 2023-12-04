@@ -1,0 +1,54 @@
+package lab;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class TemperatureConvert extends JFrame implements ActionListener
+{
+	private JTextField celsiusTextField;
+	private JTextField farenheitTextField;
+	 TemperatureConvert()
+	 {
+		 //set frame property
+		 setTitle("Temperature converter");
+		 setSize(300, 150);
+		 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 //create JPanel
+		 JPanel panel=new JPanel();
+		 panel.setLayout(new GridLayout(3,2));
+		 
+		 //create and add components
+		 JLabel celsiusLabel=new JLabel("celsius");
+		 celsiusTextField= new JTextField();
+		 JLabel farenheitLabel=new JLabel("farenheit");
+		 farenheitTextField=new JTextField();
+		 farenheitTextField.setEditable(false);
+		 JButton convertButton=new JButton("Convert");
+		 
+		 //register the button-> actionListener
+		 convertButton.addActionListener(this);
+		 
+		 panel.add(celsiusLabel);
+		 panel.add(celsiusTextField);
+		 panel.add(farenheitLabel);
+		 panel.add(farenheitTextField);
+		 panel.add(new JLabel());
+		 panel.add(convertButton);
+		 add(panel);
+		 
+		 
+	 }
+	public static void main(String[]args)
+	{
+		TemperatureConvert converter= new TemperatureConvert();
+		converter.setVisible(true);
+		
+	}
+	public void actionPerformed(ActionEvent e)
+	{
+		double celsius=Double.parseDouble(celsiusTextField.getText());
+		Double farenheit=(celsius*9/5)+32;
+		farenheitTextField.setText(String.format("%.2f",farenheit));
+		
+	}
+
+}
